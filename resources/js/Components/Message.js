@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const Container = styled.div`
   font-weight: bold;
   font-size: 1rem;
-  color: #fff;
+  color: #47eba2;
   margin-bottom: 1rem;
 `;
 

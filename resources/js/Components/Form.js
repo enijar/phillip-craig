@@ -36,6 +36,10 @@ export default function Form(props) {
         setErrors(res.errors);
         setMessage(res.message);
         setSubmitting(false);
+
+        if (props.onSubmit) {
+            props.onSubmit(res);
+        }
     };
 
     return (

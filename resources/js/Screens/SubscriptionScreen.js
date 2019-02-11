@@ -7,17 +7,25 @@ import Divider from "../Components/Divider";
 import Form from "../Components/Form";
 import Button from "../Components/Button";
 
+const INITIAL_STATE = {
+    data: {
+        email: '',
+    },
+};
+
 export default class SubscriptionScreen extends BaseScreen {
-    state = {
-        data: {
-            email: '',
-        },
-    };
+    state = JSON.parse(JSON.stringify(INITIAL_STATE));
 
     handleChange = event => {
         const {data} = this.state;
         data[event.target.name] = event.target.value;
         this.setState({data});
+    };
+
+    handleSubmit = res => {
+        if (res.success) {
+            this.setState(JSON.parse(JSON.stringify(INITIAL_STATE)));
+        }
     };
 
     render() {
@@ -28,7 +36,12 @@ export default class SubscriptionScreen extends BaseScreen {
 
                     <Divider/>
 
-                    <Form endpoint={route('api.subscribe')} method="post" data={this.state.data}>
+                    <Form
+                        endpoint={route('api.subscribe')}
+                        method="post"
+                        data={this.state.data}
+                        onSubmit={this.handleSubmit}
+                    >
                         <input
                             type="email"
                             name="email"
