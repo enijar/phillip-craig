@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DeBeers\Entities;
+namespace App\PhillipCraig\Entities;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
