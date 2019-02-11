@@ -8,5 +8,10 @@ class Subscription extends Model
 {
     protected $fillable = [
         'email',
+        'subscribed',
+    ];
+
+    public $casts = [
+        'subscribed' => 'boolean',
     ];
 }
