@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Courier, serif;
+  font-size: $root-size;
+}
+
+html, body, #root-app {
+  width: 100%;
+  height: 100%;
+}
+
+html, body {
+  // Disable "bounce scroll" on iOS.
+  position: fixed;
+  overflow: hidden;
+}
+
+#root-app {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+h1, h2, h3, h4, h5, p {
+  margin-bottom: 0.5em;
+}
+
+.content {
+  width: 100%;
+  max-width: $content-width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.App {
+  height: 100%;
+}

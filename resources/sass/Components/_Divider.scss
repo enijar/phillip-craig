@@ -1,0 +1,20 @@
+.Divider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 670px;
+
+  &__line {
+    width: calc(50% - 25px);
+    height: 3px;
+    background-color: #e0e0e0;
+  }
+
+  &__center {
+    font-family: Arial, serif;
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #e0e0e0;
+  }
+}
