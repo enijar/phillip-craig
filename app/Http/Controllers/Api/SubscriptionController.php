@@ -9,6 +9,18 @@ class SubscriptionController extends Controller
 {
     public function subscribe()
     {
-        return JsonResponse::data(['success' => true]);
+        $validation = JsonResponse::validate([
+            'email' => 'required|email|max:255',
+        ], [
+            'email.required' => 'Enter your email',
+            'email.email' => 'Enter a valid email',
+            'max.email' => 'Email too long, make it 255 or less characters',
+        ]);
+
+        if (!$validation->passes) {
+            return JsonResponse::errors($validation->errors);
+        }
+
+        return JsonResponse::message("You're subscribed. We'll notify you when we drop a line.");
     }
 }
