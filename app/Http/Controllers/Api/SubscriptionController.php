@@ -27,6 +27,6 @@ class SubscriptionController extends Controller
             return JsonResponse::errors(['Unable to subscribe, try again']);
         }
 
-        return JsonResponse::message("You're subscribed. We'll notify you when we drop a line.");
+        return JsonResponse::message("You're subscribed");
     }
 }
