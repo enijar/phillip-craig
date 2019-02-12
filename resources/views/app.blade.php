@@ -28,5 +28,6 @@
 <body>
 <div id="root-app"></div>
 <script src="{{ asset("dist/app.js?v={$version}") }}"></script>
+<script src="//rum-static.pingdom.net/pa-5c631abccea07b0016000ba4.js" async></script>
 </body>
 </html>
