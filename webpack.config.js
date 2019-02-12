@@ -15,7 +15,7 @@ const postCSSLoaderPlugins = [
     }),
 ];
 
-if (process.env.NODE_ENV === 'production') {
+if (process.argv[process.argv.length - 1] === 'production') {
     postCSSLoaderPlugins.push(require('cssnano')({preset: 'default'}));
 }
 
@@ -92,13 +92,13 @@ module.exports = {
     },
     plugins: [
         new WebpackNotifierPlugin({
-            alwaysNotify: process.env.NODE_ENV === 'development',
-            skipFirstNotification: process.env.NODE_ENV === 'production',
+            alwaysNotify: process.argv[process.argv.length - 1] === 'development',
+            skipFirstNotification: process.argv[process.argv.length - 1] === 'production',
         }),
         new ExtractTextPlugin({
             filename: 'app.css',
             allChunks: true,
         }),
     ],
-    devtool: process.env.NODE_ENV === 'development' ? 'source-map' : false,
+    devtool: process.argv[process.argv.length - 1] === 'development' ? 'source-map' : false,
 };

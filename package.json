@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "Philip Craig",
   "scripts": {
-    "watch": "NODE_ENV=development && npx webpack --progress --hide-modules --watch --mode development",
-    "build": "NODE_ENV=production && npx webpack --progress --hide-modules --mode production",
+    "watch": "npx webpack --progress --hide-modules --watch --mode development",
+    "build": "npx webpack --progress --hide-modules --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
