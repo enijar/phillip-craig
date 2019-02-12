@@ -83,7 +83,6 @@ export default class Form extends Component {
                             ref={this.captcha}
                             sitekey={window.APP.reCaptchaSiteKey}
                             onChange={this.setCaptcha}
-                            style={{visibility: 'hidden'}}
                         />
                     )}
                 </div>
