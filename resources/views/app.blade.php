@@ -20,6 +20,7 @@
             },
             routes: JSON.parse('{!! json_encode($routes, JSON_HEX_QUOT|JSON_HEX_APOS) !!}'),
             version: '{{ $version }}',
+            cdn: '{{ env('CDN_URL') }}',
         };
     </script>
 </head>

@@ -13,6 +13,17 @@ export function asset(pathname) {
     return url(`${pathname}?v=${window.APP.version}`);
 }
 
+export function cdn(pathname) {
+    // Replace leading and trailing "/"
+    pathname = pathname.replace(/^\/+/, '');
+    pathname = pathname.replace(/\/+$/, '');
+
+    // Replace trailing "/"
+    const url = window.APP.cdn.replace(/\/+$/);
+
+    return `${url}/${pathname}`;
+}
+
 export function guid() {
     const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
