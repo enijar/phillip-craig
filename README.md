@@ -90,3 +90,11 @@ chown www-data:www-data -R storage bootstrap public
 [Staging](https://staging.phillipcraig.com)
 
 [Production](https://phillipcraig.com)
+
+### Deploying
+
+Assuming you have deployment privileges, run:
+
+```bash
+./bin/deploy.sh
+```
