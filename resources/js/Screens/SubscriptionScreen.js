@@ -41,6 +41,7 @@ export default class SubscriptionScreen extends BaseScreen {
                         method="post"
                         data={this.state.data}
                         onSubmit={this.handleSubmit}
+                        verifyCaptcha
                     >
                         <input
                             type="email"
@@ -53,9 +54,7 @@ export default class SubscriptionScreen extends BaseScreen {
                         <Button type="submit">subscribe</Button>
                     </Form>
 
-                    <p>
-                        Subscribe to be notified when we drop a line.
-                    </p>
+                    <p>Subscribe to be notified when we drop a line.</p>
                 </BackgroundVideo>
             </Screen>
         );

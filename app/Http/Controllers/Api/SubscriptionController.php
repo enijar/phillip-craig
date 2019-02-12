@@ -14,11 +14,14 @@ class SubscriptionController extends Controller
     {
         $validation = JsonResponse::validate([
             'email' => 'required|email|unique:subscriptions,email,max:255',
+            'captcha' => 'required|recaptcha',
         ], [
-            'email.required' => 'Enter your email',
-            'email.email' => 'Enter a valid email',
+            'email.required' => 'Please enter your email',
+            'email.email' => 'Please enter a valid email',
             'email.unique' => "You've already subscribed with that email",
-            'max.email' => 'Email too long, make it 255 or less characters',
+            'max.email' => 'Email too long, please make it 255 or less characters',
+            'captcha.required' => "Please verify you're not a robot",
+            'captcha.recaptcha' => "Please verify you're not a robot",
         ]);
 
         if (!$validation->passes) {

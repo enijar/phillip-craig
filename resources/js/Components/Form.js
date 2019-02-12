@@ -1,55 +1,93 @@
-import React, {useState} from "react";
+import React, {Component, createRef} from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import PropTypes from "prop-types";
 import Request from "../app/Http/Request";
 import Errors from "./Errors";
 import Message from "./Message";
 
-Form.propTypes = {
-    endpoint: PropTypes.string.isRequired,
-    method: PropTypes.oneOf(['get', 'post', 'patch', 'delete']),
-    data: PropTypes.object,
-    onSubmit: PropTypes.func,
-};
+export default class Form extends Component {
+    static propTypes = {
+        endpoint: PropTypes.string.isRequired,
+        method: PropTypes.oneOf(['get', 'post', 'patch', 'delete']),
+        data: PropTypes.object,
+        onSubmit: PropTypes.func,
+        verifyCaptcha: PropTypes.bool,
+    };
 
-Form.defaultProps = {
-    method: 'get',
-};
+    static defaultProps = {
+        method: 'get',
+        verifyCaptcha: false,
+    };
 
-export default function Form(props) {
-    const [submitting, setSubmitting] = useState(false);
-    const [errors, setErrors] = useState([]);
-    const [message, setMessage] = useState(null);
+    captcha = createRef();
 
-    const handleSubmit = async event => {
+    state = {
+        submitting: false,
+        errors: [],
+        message: null,
+        captcha: '',
+    };
+
+    async submit() {
+        const data = this.props.data;
+
+        if (this.props.verifyCaptcha) {
+            data.captcha = this.state.captcha;
+        }
+
+        const res = await Request[this.props.method](this.props.endpoint, data);
+        await this.setState({errors: res.errors, message: res.message, submitting: false});
+
+        if (this.props.onSubmit) {
+            this.props.onSubmit(res);
+        }
+    }
+
+    handleSubmit = async event => {
         event.preventDefault();
 
-        if (submitting) {
+        if (this.state.submitting) {
             return;
         }
 
-        setErrors([]);
-        setMessage(null);
-        setSubmitting(true);
+        await this.setState({errors: [], message: null, submitting: true});
 
-        const res = await Request[props.method](props.endpoint, props.data);
-
-        setErrors(res.errors);
-        setMessage(res.message);
-        setSubmitting(false);
-
-        if (props.onSubmit) {
-            props.onSubmit(res);
+        if (this.props.verifyCaptcha && !this.state.captcha) {
+            return this.captcha.current.execute();
         }
+
+        return this.submit();
     };
 
-    return (
-        <form className={`Form ${submitting ? 'Form--processing' : ''}`} onSubmit={handleSubmit} noValidate>
-            <Errors errors={errors}/>
-            <Message message={message}/>
+    setCaptcha = async captcha => {
+        this.setState({captcha});
+        return this.submit();
+    };
 
-            <div className="Form__fields">
-                {props.children}
-            </div>
-        </form>
-    );
+    render() {
+        return (
+            <form
+                className={`Form ${this.state.submitting ? 'Form--processing' : ''}`}
+                onSubmit={this.handleSubmit}
+                noValidate
+            >
+                <Errors errors={this.state.errors}/>
+                <Message message={this.state.message}/>
+
+                <div className="Form__fields">
+                    {this.props.children}
+
+                    {this.props.verifyCaptcha && (
+                        <ReCAPTCHA
+                            size="invisible"
+                            ref={this.captcha}
+                            sitekey={window.APP.reCaptchaSiteKey}
+                            onChange={this.setCaptcha}
+                            style={{visibility: 'hidden'}}
+                        />
+                    )}
+                </div>
+            </form>
+        );
+    }
 }
