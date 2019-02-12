@@ -31,7 +31,7 @@ export default class SubscriptionScreen extends BaseScreen {
     render() {
         return (
             <Screen name="Subscription">
-                <BackgroundVideo>
+                <BackgroundVideo mode="dark">
                     <img src={asset('img/logo.svg')} alt="Logo" className="logo img-responsive"/>
 
                     <Divider/>
