@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\NewSubscription;
 use App\PhillipCraig\Entities\Subscription;
 use App\PhillipCraig\Http\JsonResponse;
+use Illuminate\Support\Facades\Notification;
 
 class SubscriptionController extends Controller
 {
@@ -23,8 +25,15 @@ class SubscriptionController extends Controller
             return JsonResponse::errors($validation->errors);
         }
 
-        if (!Subscription::create(request()->all())) {
+        $subscription = Subscription::create(request()->all());
+
+        if (!$subscription) {
             return JsonResponse::errors(['Unable to subscribe, try again']);
+        }
+
+        if (env('APP_ENV') === 'production') {
+            Notification::route('slack', env('SLACK_WEBHOOK_URL'))
+                ->notify(new NewSubscription($subscription));
         }
 
         return JsonResponse::message("You're subscribed");
