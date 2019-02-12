@@ -1,5 +1,5 @@
 import React from "react";
-import {asset, route} from "../app/utils";
+import {cdn, route} from "../app/utils";
 import BaseScreen from "./BaseScreen";
 import Screen from "../Components/Screen";
 import BackgroundVideo from "../Components/BackgroundVideo";
@@ -32,7 +32,7 @@ export default class SubscriptionScreen extends BaseScreen {
         return (
             <Screen name="Subscription">
                 <BackgroundVideo>
-                    <img src={asset('img/logo.svg')} alt="Logo" className="logo img-responsive"/>
+                    <img src={cdn('logo.svg')} alt="Logo" className="logo img-responsive"/>
 
                     <Divider/>
 
