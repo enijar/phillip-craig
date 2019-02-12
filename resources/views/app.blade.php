@@ -2,6 +2,14 @@
 
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134347854-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-134347854-1');
+    </script>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -27,6 +35,7 @@
 
 <body>
 <div id="root-app"></div>
+
 <script src="{{ asset("dist/app.js?v={$version}") }}"></script>
 <script src="//rum-static.pingdom.net/pa-5c631abccea07b0016000ba4.js" async></script>
 </body>
