@@ -54,7 +54,7 @@ export default class SubscriptionScreen extends BaseScreen {
                         <Button type="submit">subscribe</Button>
                     </Form>
 
-                    <p>Subscribe to be notified when we drop a line.</p>
+                    <p>Subscribe to out mailing list to be notified when our F/W 19 collection lands!</p>
                 </BackgroundVideo>
             </Screen>
         );
