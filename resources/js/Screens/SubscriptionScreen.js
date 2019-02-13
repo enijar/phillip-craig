@@ -60,6 +60,8 @@ export default class SubscriptionScreen extends BaseScreen {
     };
 
     render() {
+        console.log('window.APP.reCaptchaSiteKey', window.APP.reCaptchaSiteKey);
+
         return (
             <Screen name="Subscription">
                 <BackgroundVideo mode="dark">
