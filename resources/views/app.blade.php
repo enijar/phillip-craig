@@ -23,6 +23,7 @@
     <meta name="description" content="Fashion."/>
 
     <meta property="og:image" content="{{ asset('img/share.jpg') }}"/>
+    <meta property="og:type" content="website"/>
     <meta property="og:title" content="Phillip Craig"/>
     <meta property="og:description" content="Fashion."/>
     <meta property="og:url" content="https://phillipcraig.com"/>
