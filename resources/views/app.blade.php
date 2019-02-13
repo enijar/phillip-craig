@@ -28,7 +28,7 @@
     <meta property="og:url" content="https://phillipcraig.com"/>
 
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta property="twitter:image" content="{{ asset('img/share.jpg' }}"/>
+    <meta property="twitter:image" content="{{ asset('img/share.jpg') }}"/>
     <meta property="twitter:title" content="Phillip Craig"/>
     <meta property="twitter:description" content="Fashion."/>
     <meta property="twitter:url" content="https://phillipcraig.com"/>
