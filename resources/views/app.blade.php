@@ -16,8 +16,23 @@
         </script>
     @endif
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="keywords" content="fashion, clothing"/>
+    <meta name="subtitle" content="Your go-to Innovative agency for all things digital"/>
+    <meta name="description" content="Fashion."/>
+
+    <meta property="og:image" content="{{ asset('img/share.jpg') }}"/>
+    <meta property="og:title" content="Finer Vision"/>
+    <meta property="og:description" content="Fashion."/>
+    <meta property="og:url" content="https://finervision.com"/>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:image" content="{{ asset('img/share.jpg' }}"/>
+    <meta property="twitter:title" content="Finer Vision"/>
+    <meta property="twitter:description" content="Fashion."/>
+    <meta property="twitter:url" content="https://finervision.com"/>
+
     <title>Phillip Craig</title>
     <link rel="stylesheet" href="{{ asset("dist/app.css?v={$version}") }}">
     <base href="{{ url('/') }}">
