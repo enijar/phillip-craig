@@ -43,8 +43,6 @@ export default class SubscriptionScreen extends BaseScreen {
     };
 
     resetCaptcha = async () => {
-        console.log('resetCaptcha');
-
         this.captchaResets++;
 
         if (this.captchaResets === MAX_CAPTCHA_RESETS) {
@@ -60,8 +58,6 @@ export default class SubscriptionScreen extends BaseScreen {
     };
 
     render() {
-        console.log('window.APP.reCaptchaSiteKey', window.APP.reCaptchaSiteKey);
-
         return (
             <Screen name="Subscription">
                 <BackgroundVideo mode="dark">
