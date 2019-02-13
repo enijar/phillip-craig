@@ -1,6 +1,6 @@
-import React, {Component, createRef} from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
+import Validation from "fv-validation";
 import Request from "../app/Http/Request";
 import Errors from "./Errors";
 import Message from "./Message";
@@ -11,31 +11,29 @@ export default class Form extends Component {
         method: PropTypes.oneOf(['get', 'post', 'patch', 'delete']),
         data: PropTypes.object,
         onSubmit: PropTypes.func,
-        verifyCaptcha: PropTypes.bool,
+        rules: PropTypes.object,
+        messages: PropTypes.object,
     };
 
     static defaultProps = {
         method: 'get',
-        verifyCaptcha: false,
     };
 
-    captcha = createRef();
+    validation = new Validation();
 
     state = {
         submitting: false,
         errors: [],
         message: null,
-        captcha: '',
+        rules: {},
+        messages: {},
     };
 
     async submit() {
-        const data = this.props.data;
+        await this.setState({errors: [], message: null, submitting: true});
 
-        if (this.props.verifyCaptcha) {
-            data.captcha = this.state.captcha;
-        }
+        const res = await Request[this.props.method](this.props.endpoint, this.props.data);
 
-        const res = await Request[this.props.method](this.props.endpoint, data);
         await this.setState({errors: res.errors, message: res.message, submitting: false});
 
         if (this.props.onSubmit) {
@@ -50,17 +48,14 @@ export default class Form extends Component {
             return;
         }
 
-        await this.setState({errors: [], message: null, submitting: true});
+        this.validation.validate(this.props.data, this.props.rules, this.props.messages);
+        const errors = this.validation.getErrors();
 
-        if (this.props.verifyCaptcha && !this.state.captcha) {
-            return this.captcha.current.execute();
+        if (errors.length > 0) {
+            // Show first error
+            return this.setState({errors: [errors[0]], submitting: false});
         }
 
-        return this.submit();
-    };
-
-    setCaptcha = async captcha => {
-        this.setState({captcha});
         return this.submit();
     };
 
@@ -76,15 +71,6 @@ export default class Form extends Component {
 
                 <div className="Form__fields">
                     {this.props.children}
-
-                    {this.props.verifyCaptcha && (
-                        <ReCAPTCHA
-                            size="invisible"
-                            ref={this.captcha}
-                            sitekey={window.APP.reCaptchaSiteKey}
-                            onChange={this.setCaptcha}
-                        />
-                    )}
                 </div>
             </form>
         );

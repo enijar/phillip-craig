@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@loadable/component": "^5.2.2",
+    "fv-validation": "^3.0.7",
     "lodash": "^4.17.11",
     "react": "^16.8.0",
     "react-custom-scrollbars": "^4.2.1",
