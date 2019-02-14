@@ -1,4 +1,6 @@
 .Screen--Subscription {
+  $max-form-width: 670px;
+
   .logo {
     max-width: 385px;
     width: 100%;
@@ -18,7 +20,7 @@
   }
 
   .Form {
-    max-width: 670px;
+    max-width: $max-form-width;
     width: 100%;
     margin-top: 2rem;
     transition: opacity 0.7s ease;
@@ -26,17 +28,34 @@
     &__input {
       width: 100%;
       margin-right: 1rem;
+
+      @media (max-width: $max-form-width) {
+        margin-right: auto;
+      }
     }
 
     &__fields {
       display: flex;
       align-items: flex-start;
       justify-content: center;
+
+      @media (max-width: $max-form-width) {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     &__captcha {
       height: 78px;
       margin-top: 1rem;
+
+      @media (max-width: $max-form-width) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
     }
 
     input {
@@ -76,5 +95,9 @@
     width: 100%;
     color: #fff;
     margin-top: 1rem;
+
+    @media (max-width: $max-form-width) {
+      text-align: center;
+    }
   }
 }
