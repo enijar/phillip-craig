@@ -15,14 +15,10 @@ const INITIAL_STATE = {
     },
 };
 
-const MAX_CAPTCHA_RESETS = 5;
-
 export default class SubscriptionScreen extends BaseScreen {
     state = JSON.parse(JSON.stringify(INITIAL_STATE));
 
     captcha = createRef();
-
-    captchaResets = 0;
 
     handleChange = event => {
         const {data} = this.state;
@@ -43,13 +39,6 @@ export default class SubscriptionScreen extends BaseScreen {
     };
 
     resetCaptcha = async () => {
-        this.captchaResets++;
-
-        if (this.captchaResets === MAX_CAPTCHA_RESETS) {
-            this.captchaResets = MAX_CAPTCHA_RESETS;
-            return;
-        }
-
         await this.updateCaptcha();
 
         if (this.captcha.current) {
