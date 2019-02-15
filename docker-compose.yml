@@ -1,6 +1,30 @@
 version: '3'
 
 services:
+  mysql:
+    image: 'mysql:5.7'
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_HOST=${DB_HOST:-127.0.0.1}
+      - MYSQL_PORT=${DB_PORT:-3306}
+      - MYSQL_DATABASE=${DB_DATABASE:-phillip_craig}
+      - MYSQL_USER=${DB_USERNAME:-phillip_craig}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD:-secret}
+    ports:
+      - 33306:3306
+
+  redis:
+    image: 'redis:latest'
+    restart: always
+    environment:
+      - REDIS_HOST=${REDIS_HOST:-127.0.0.1}
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-null}
+      - REDIS_PORT=${REDIS_PORT:-6379}
+    volumes:
+      - ./:/var/www
+
   node:
     build:
       context: ./
@@ -17,20 +41,6 @@ services:
     volumes:
       - ./:/var/www
 
-  mysql:
-    image: 'mysql:5.7'
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      - MYSQL_HOST=${DB_HOST:-127.0.0.1}
-      - MYSQL_PORT=${DB_PORT:-3306}
-      - MYSQL_DATABASE=${DB_DATABASE:-phillip_craig}
-      - MYSQL_USER=${DB_USERNAME:-phillip_craig}
-      - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
-      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD:-secret}
-    ports:
-      - 33306:3306
-
   nginx:
     image: 'nginx:latest'
     volumes:
@@ -40,5 +50,6 @@ services:
       - 8080:80
     depends_on:
       - mysql
+      - redis
       - node
       - app
