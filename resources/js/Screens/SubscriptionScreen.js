@@ -34,7 +34,7 @@ export default class SubscriptionScreen extends BaseScreen {
         }
     };
 
-    updateCaptcha = captcha => {
+    updateCaptcha = (captcha = '') => {
         const {data} = this.state;
         data.captcha = captcha;
         return this.setState({data});
