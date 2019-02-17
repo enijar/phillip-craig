@@ -11,6 +11,7 @@ class Subscription extends Model
 
     protected $fillable = [
         'email',
+        'code',
         'subscribed',
     ];
 
