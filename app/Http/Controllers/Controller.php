@@ -14,6 +14,8 @@ class Controller extends BaseController
 
     public function __construct()
     {
+        request()->merge($this->getCleanInput());
+
         $version = Cache::remember('version', 5, function () {
             return trim(shell_exec('git rev-parse --short HEAD'));
         });
@@ -27,5 +29,35 @@ class Controller extends BaseController
         }
 
         view()->share(compact('routes', 'version'));
+    }
+
+    private function getCleanInput(): array
+    {
+        $input = request()->all();
+        if (isset($input['email'])) {
+            $input['email'] = $this->cleanEmail($input['email']);
+        }
+        return $input;
+    }
+
+    /**
+     * Prevent duplicate emails, that support the "+" postfix,
+     * e.g. example@gmail.com ~ example+1@gmail.com
+     *
+     * @param string $email
+     * @return string
+     */
+    private function cleanEmail(string $email): string
+    {
+        $parts = explode('@', $email);
+
+        // check if there is a "+" and return the string before
+        $beforePlus = strstr($parts[0], '+', true);
+        $beforeAt = $beforePlus ? $beforePlus : $parts[0];
+
+        // remove "."
+        $beforeAt = str_replace('.', '', $beforeAt);
+
+        return "{$beforeAt}@{$parts[1]}";
     }
 }
