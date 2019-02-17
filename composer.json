@@ -15,7 +15,6 @@
     "laravel/framework": "5.7.*",
     "laravel/tinker": "^1.0",
     "predis/predis": "^1.1",
-    "sendgrid/sendgrid": "^7.2",
     "tymon/jwt-auth": "dev-develop"
   },
   "require-dev": {
