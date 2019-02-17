@@ -10,6 +10,9 @@ $default = [
 
 return [
     'email' => $default['from']['email'],
+    'sendgrid_lists' => [
+        'notifications' => 7035419,
+    ],
     'subscribe' => array_replace_recursive($default, [
         'subject' => 'Subscribed to Phillip Craig',
     ]),

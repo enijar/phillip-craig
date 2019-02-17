@@ -44,6 +44,8 @@ class SubscriptionController extends Controller
         // make the user wait for these requests to finish
         if (env('APP_ENV') === 'production') {
             try {
+                $sg = new SendGrid(env('SENDGRID_API_KEY'));
+                $sg->client->contactdb()->recipients()->post([$email]);
                 $this->contactSubscription($email, true);
                 Notification::route('slack', env('SLACK_WEBHOOK_URL'))
                     ->notify(new NewSubscription($subscription));
@@ -85,11 +87,13 @@ class SubscriptionController extends Controller
         // @todo Move this to queue
 
         $sg = new SendGrid(env('SENDGRID_API_KEY'));
+        $listId = config('phillip_craig.mail.sendgrid_lists.notifications');
+        $recipientId = base64_encode($email);
 
         if ($subscribed) {
-            $sg->client->contactdb()->recipients()->post([$email]);
+            $sg->client->contactdb()->lists()->_($listId)->recipients()->_($recipientId)->post();
         } else {
-            $sg->client->contactdb()->recipients()->delete([base64_encode($email)]);
+            $sg->client->contactdb()->lists()->_($listId)->recipients()->_($recipientId)->delete();
         }
     }
 }
