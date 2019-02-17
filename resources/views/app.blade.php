@@ -35,7 +35,8 @@
     <meta property="twitter:url" content="https://phillipcraig.com"/>
 
     <title>Phillip Craig</title>
-    <link rel="stylesheet" href="{{ asset("dist/app.css?v={$version}") }}">
+    <link rel="stylesheet" href="{{ asset("dist/app.css?v={$version}") }}"/>
+    <link rel="shortcut icon" href="{{ asset('img/icon.png') }}"/>
     <base href="{{ url('/') }}">
     <script>
         window.APP = {
