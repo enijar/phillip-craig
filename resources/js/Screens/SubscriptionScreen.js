@@ -27,8 +27,9 @@ export default class SubscriptionScreen extends BaseScreen {
     };
 
     handleSubmit = async res => {
+        await this.resetCaptcha();
+
         if (res.success) {
-            await this.resetCaptcha();
             this.setState(JSON.parse(JSON.stringify(INITIAL_STATE)));
         }
     };
