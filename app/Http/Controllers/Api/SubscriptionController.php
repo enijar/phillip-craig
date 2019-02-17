@@ -46,8 +46,7 @@ class SubscriptionController extends Controller
         $sg = new SendGrid(env('SENDGRID_API_KEY'));
 
         try {
-            $response = $sg->client->contactdb()->recipients()->post([request()->only(['email'])]);
-            die(var_dump($response->statusCode(), $response->body()));
+            $sg->client->contactdb()->recipients()->post([request()->only(['email'])]);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
         }
