@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubscriptionPost;
 use App\Mail\SubscriptionConfirmationMail;
 use App\Notifications\NewSubscription;
 use App\PhillipCraig\Entities\Subscription;
@@ -14,25 +15,9 @@ use Illuminate\Support\Facades\Notification;
 
 class SubscriptionController extends Controller
 {
-    public function subscribe()
+    public function subscribe(SubscriptionPost $request)
     {
-        $validation = JsonResponse::validate([
-            'email' => 'required|email|unique:subscriptions,email,max:255',
-            'captcha' => 'required|recaptcha',
-        ], [
-            'email.required' => 'Please enter your email',
-            'email.email' => 'Please enter a valid email',
-            'email.unique' => "You've already subscribed with that email",
-            'max.email' => 'Email too long, please make it 255 or less characters',
-            'captcha.required' => "Please verify you're not a robot",
-            'captcha.recaptcha' => "Please verify you're not a robot",
-        ]);
-
-        if (!$validation->passes) {
-            return JsonResponse::errors($validation->errors);
-        }
-
-        $email = request()->get('email');
+        $email = $request->get('email');
         $code = str_random(60);
         $subscription = Subscription::create(compact('email', 'code'));
 
@@ -52,10 +37,9 @@ class SubscriptionController extends Controller
             } catch (\Exception $exception) {
                 Log::error($exception->getMessage());
             }
-        }
 
-        // @todo Send verification of subscription to user's email
-        Mail::send(new SubscriptionConfirmationMail($subscription));
+            Mail::send(new SubscriptionConfirmationMail($subscription));
+        }
 
         return JsonResponse::message("You're subscribed");
     }
