@@ -18,20 +18,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <meta name="keywords" content="fashion, clothing"/>
-    <meta name="subtitle" content="Fashion."/>
-    <meta name="description" content="Fashion."/>
+    <meta name="keywords" content="fashion, clothing, phillip, craig, shop, merchandise"/>
+    <meta name="subtitle" content="Phillip Craig"/>
+    <meta name="description" content="Breaching the norm. Shop official Phillip Craig merchandise. F/W available now"/>
 
     <meta property="og:image" content="{{ asset('img/share.jpg') }}"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="Phillip Craig"/>
-    <meta property="og:description" content="Fashion."/>
+    <meta property="og:description" content="Breaching the norm. Shop official Phillip Craig merchandise. F/W available now"/>
     <meta property="og:url" content="https://phillipcraig.com"/>
 
     <meta name="twitter:card" content="summary_large_image"/>
     <meta property="twitter:image" content="{{ asset('img/share.jpg') }}"/>
     <meta property="twitter:title" content="Phillip Craig"/>
-    <meta property="twitter:description" content="Fashion."/>
+    <meta property="twitter:description" content="Breaching the norm. Shop official Phillip Craig merchandise. F/W available now"/>
     <meta property="twitter:url" content="https://phillipcraig.com"/>
 
     <title>Phillip Craig</title>
