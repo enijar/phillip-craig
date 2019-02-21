@@ -3,10 +3,11 @@
 namespace App\Events;
 
 use App\PhillipCraig\Entities\Subscription;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 
-class NewSubscription
+class NewSubscription implements ShouldQueue
 {
     use Dispatchable, SerializesModels;
 

@@ -70,6 +70,34 @@ Install Node.JS dependencies inside the Docker container
 docker-compose exec node npm add `package_name`
 ```
 
+### Queue Processing
+
+In development change `QUEUE_CONNECTION` in the `.env` file to `sync`.
+
+In production, copy over the worker file.
+
+```bash
+sudo cp /path/to/worker.example.conf /etc/supervisor/conf.d/phillip-craig.conf
+```
+
+Change `command=php /var/www/phillipcraig.com` path to the correct path where the
+artisan file is on the server for your project.
+
+Then start the worker, with
+
+```bash
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start phillip-craig-worker:*
+```
+
+If the queue processes changes, run
+
+```bash
+php artisan config:clear
+php artisan queue:restart
+```
+
 ### Deploying to Staging/Production
 
 Follow the steps outlined in the [Running](#Running) section (the Docker
