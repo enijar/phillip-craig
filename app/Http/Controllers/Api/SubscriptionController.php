@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\NewSubscription;
+use App\Events\UpdateSubscription;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubscriptionPost;
-use App\Mail\SubscriptionConfirmationMail;
-use App\Notifications\NewSubscription;
 use App\PhillipCraig\Entities\Subscription;
 use App\PhillipCraig\Http\JsonResponse;
-use App\PhillipCraig\Services\SendGrid;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
 
 class SubscriptionController extends Controller
 {
@@ -25,21 +21,7 @@ class SubscriptionController extends Controller
             return JsonResponse::errors(['Unable to subscribe, try again']);
         }
 
-        // @todo Move these external API calls to a queue to process. It's bad practice to
-        // make the user wait for these requests to finish
-        if (env('APP_ENV') === 'production') {
-            try {
-                $sg = new SendGrid();
-                $sg->addContact($email);
-                $this->contactSubscription($email, true);
-                Notification::route('slack', env('SLACK_WEBHOOK_URL'))
-                    ->notify(new NewSubscription($subscription));
-            } catch (\Exception $exception) {
-                Log::error($exception->getMessage());
-            }
-
-            Mail::send(new SubscriptionConfirmationMail($subscription));
-        }
+        event(new NewSubscription($subscription));
 
         return JsonResponse::message("You're subscribed");
     }
@@ -55,30 +37,12 @@ class SubscriptionController extends Controller
 
         $subscription->update(compact('subscribed'));
 
-        $this->contactSubscription($subscription->email, $subscribed);
-
-        if (env('APP_ENV') === 'production') {
-            $this->contactSubscription($subscription->email, false);
-        }
+        event(new UpdateSubscription($subscription));
 
         $message = "You're now " . ($subscribed === 1 ? 'subscribed' : 'unsubscribed');
         $actionMessage = $subscribed === 1 ? 'unsubscribe' : 'subscribe';
         $action = route('subscription', array_merge($data, ['subscribed' => $subscribed === 1 ? 0 : 1]));
 
         return "<p>{$message}</p><p>Click <a href='{$action}'>here</a> to {$actionMessage}</p>";
-    }
-
-    private function contactSubscription(string $email, $subscribed = true)
-    {
-        // @todo Move this to queue
-
-        $sg = new SendGrid();
-        $listId = config('phillip_craig.mail.sendgrid_lists.notifications');
-
-        if ($subscribed) {
-            $sg->addRecipientToList($listId, $email);
-        } else {
-            $sg->removeRecipientToList($listId, $email);
-        }
     }
 }

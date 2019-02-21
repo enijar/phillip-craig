@@ -23,7 +23,7 @@ class SubscriptionPost extends FormRequest
         return [
             'email.required' => 'Please enter your email',
             'email.email' => 'Please enter a valid email',
-            'email.unique' => "You've already subscribed with that email",
+            'email.unique' => "You're already subscribed with that email",
             'email.spam_email' => 'Sorry, but your email provider has been flagged as spam, try another email',
             'max.email' => 'Email too long, please make it 255 or less characters',
             'captcha.required' => "Please verify you're not a robot",

@@ -7,7 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 
-class NewSubscription extends Notification
+class NewSubscriptionNotification extends Notification
 {
     use Queueable;
 

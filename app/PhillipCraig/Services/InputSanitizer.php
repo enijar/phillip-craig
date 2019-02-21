@@ -23,9 +23,6 @@ class InputSanitizer
         $beforePlus = strstr($parts[0], '+', true);
         $beforeAt = $beforePlus ? $beforePlus : $parts[0];
 
-        // remove "."
-        $beforeAt = str_replace('.', '', $beforeAt);
-
         return "{$beforeAt}@{$parts[1]}";
     }
 }

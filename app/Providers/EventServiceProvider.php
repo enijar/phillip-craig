@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use App\Events\NewSubscription;
+use App\Events\UpdateSubscription;
+use App\Listeners\NewSubscription\AddSubscriptionToSendgrid;
+use App\Listeners\NewSubscription\NotifySlackOfNewSubscription;
+use App\Listeners\NewSubscription\SendConfirmationEmailToNewSubscription;
+use App\Listeners\UpdateSubscription\UpdateSubscriptionInSendgrid;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -15,8 +18,13 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        NewSubscription::class => [
+            AddSubscriptionToSendgrid::class,
+            NotifySlackOfNewSubscription::class,
+            SendConfirmationEmailToNewSubscription::class,
+        ],
+        UpdateSubscription::class => [
+            UpdateSubscriptionInSendgrid::class,
         ],
     ];
 
@@ -28,7 +36,5 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
     }
 }
