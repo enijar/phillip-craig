@@ -25,5 +25,6 @@ class ValidatorServiceProvider extends ServiceProvider
     public function boot()
     {
         Validator::extend('recaptcha', 'App\\PhillipCraig\\Validators\\ReCaptcha@validate');
+        Validator::extend('spam_email', 'App\\PhillipCraig\\Validators\\SpamEmail@validate');
     }
 }
