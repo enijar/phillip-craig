@@ -32,7 +32,7 @@ class SubscriptionPost extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(JsonResponse::errors($validator->getMessageBag()->all()));
+        throw new HttpResponseException(JsonResponse::errors($validator->getMessageBag()->all(), 422));
     }
 
     protected function getValidatorInstance()
