@@ -70,6 +70,15 @@ Install Node.JS dependencies inside the Docker container
 docker-compose exec node npm add `package_name`
 ```
 
+### Queue Processing
+
+In production, install redis to process queues:
+
+```bash
+sudo apt update
+sudo apt install redis-server
+```
+
 ### Deploying to Staging/Production
 
 Follow the steps outlined in the [Running](#Running) section (the Docker
