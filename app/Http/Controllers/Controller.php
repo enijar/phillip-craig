@@ -15,7 +15,7 @@ class Controller extends BaseController
     public function __construct()
     {
         $version = Cache::remember('version', 5, function () {
-            return trim(shell_exec('git rev-parse --short HEAD'));
+            return trim(exec('git --git-dir ' . base_path('.git') . ' log --pretty="%h" -n1 HEAD'));
         });
 
         $routes = [];
