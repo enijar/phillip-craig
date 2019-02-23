@@ -31,8 +31,8 @@ export default class CookieNotice extends Component {
                             <h3>We love cookies...</h3>
                             <p>
                                 This site uses cookies. To see how cookies are used, please review our <Link
-                                to="/cookies">cookie notice</Link>. If you agree to our use of cookies, please continue
-                                to use our site.
+                                to="/cookie-policy">cookie policy</Link>. If you agree to our use of cookies, please
+                                continue to use our site.
                             </p>
                         </div>
                     </div>
