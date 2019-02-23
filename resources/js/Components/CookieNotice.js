@@ -1,20 +1,36 @@
 import React, {Component} from "react";
 import {createPortal} from "react-dom";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 import {asset} from "../app/utils";
 import Button from "./Button";
 
 export default class CookieNotice extends Component {
+    static propTypes = {
+        onShowChange: PropTypes.func,
+    };
+
     mountNode = document.querySelector('#root-notice');
 
     state = {
         show: localStorage.getItem('cookieNoticeAccepted') === null,
     };
 
-    handleClick = () => {
+    componentDidMount() {
+        this.toggleShow();
+    }
+
+    handleClick = async () => {
         localStorage.setItem('cookieNoticeAccepted', '');
-        this.setState({show: false});
+        await this.setState({show: false});
+        this.toggleShow();
     };
+
+    toggleShow() {
+        if (this.props.onShowChange) {
+            this.props.onShowChange(this.state.show);
+        }
+    }
 
     render() {
         if (!this.state.show) {

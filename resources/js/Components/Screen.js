@@ -13,6 +13,10 @@ export default class Screen extends Component {
         name: '',
     };
 
+    state = {
+        cookieNoticeShown: true,
+    };
+
     componentDidMount() {
         // Add this screen to the beginning of the array and persist to storage
         const screens = JSON.parse(localStorage.getItem('app.screens') || '[]');
@@ -23,11 +27,19 @@ export default class Screen extends Component {
         localStorage.setItem('app.screens', JSON.stringify(screens));
     }
 
+    handleCookieNoticeShowChange = cookieNoticeShown => {
+        this.setState({cookieNoticeShown});
+    };
+
     render() {
         return (
-            <div className={`Screen Screen--${this.props.name}`}>
+            <div className={`
+                Screen
+                Screen--${this.props.name}
+                ${this.state.cookieNoticeShown ? 'Screen--has-cookies-notice' : ''}
+            `}>
                 {this.props.children}
-                <CookieNotice/>
+                <CookieNotice onShowChange={this.handleCookieNoticeShowChange}/>
             </div>
         );
     }

@@ -1,3 +1,7 @@
 .Screen {
   min-height: 100%;
+
+  &--has-cookies-notice {
+    @include fluid-attr('padding-bottom', 122px, 171px, 750px, 320px);
+  }
 }
