@@ -53,6 +53,7 @@
     </script>
 </head>
 <body>
+<div id="root-loading"></div>
 <div id="root-app"></div>
 <script src="{{ asset("dist/app.js?v={$version}") }}"></script>
 @if (env('APP_ENV') === 'production')
