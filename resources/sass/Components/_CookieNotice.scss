@@ -1,0 +1,55 @@
+.CookieNotice {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: $notice-z-index;
+  background-color: color(cookie-notice);
+  animation: show 0.7s ease-out forwards;
+
+  @keyframes show {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+
+  &__inner {
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem 1rem;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    @include fluid-type(40px, 68px, 320px, 500px);
+    max-width: 1em;
+    margin-right: 0.4em;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-bottom: 0.2em;
+  }
+
+  p {
+    font-size: 0.75rem;
+  }
+
+  a {
+    color: #000;
+  }
+
+  button {
+    display: block;
+    margin-left: auto;
+  }
+}

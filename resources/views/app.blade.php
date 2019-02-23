@@ -53,8 +53,9 @@
     </script>
 </head>
 <body>
-<div id="root-loading"></div>
 <div id="root-app"></div>
+<div id="root-notice"></div>
+<div id="root-loading"></div>
 <script src="{{ asset("dist/app.js?v={$version}") }}"></script>
 @if (env('APP_ENV') === 'production')
     <script src="//rum-static.pingdom.net/pa-5c631abccea07b0016000ba4.js" async></script>

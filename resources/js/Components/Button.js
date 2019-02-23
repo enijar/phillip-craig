@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 export default styled.button`
   background-color: #eb4747;
@@ -7,10 +7,14 @@ export default styled.button`
   font-weight: bold;
   font-size: 1.5rem;
   color: #fff;
-  padding: 0.688rem;
+  padding: 0.4585em 0.8em;
   border-radius: 5px;
   border: 3px solid #eb4747;
   cursor: pointer;
+  
+  ${props => props.small && css`
+    font-size: 0.8rem;
+  `}
   
   :focus {
     outline: none;
