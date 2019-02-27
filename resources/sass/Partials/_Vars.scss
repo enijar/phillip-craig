@@ -3,10 +3,14 @@ $content-width: 1366px;
 $content-medium-width: 1000px;
 $notice-z-index: 1;
 $loading-z-index: 2;
+$header-height: 50px;
 
 $colors: (
         primary: #fff,
         cookie-notice: #fff,
         link: #2b202f,
         link-active: #e53843,
+        header-background: #000,
+        header-background-flurish: #e3bc20,
+        header-button: #e53843,
 );

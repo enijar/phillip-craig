@@ -3,6 +3,7 @@ import {asset} from "../app/utils";
 import BaseScreen from "./BaseScreen";
 import Screen from "../Components/Screen";
 import Carousel from "../Components/Carousel";
+import Header from "../Components/Header";
 import Nav from "../Components/Nav";
 
 const CAROUSEL_ITEMS = [
@@ -17,6 +18,7 @@ export default class HomeScreen extends BaseScreen {
     render() {
         return (
             <Screen name="Home">
+                <Header/>
                 <Nav/>
 
                 <Carousel>

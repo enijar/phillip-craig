@@ -1,0 +1,77 @@
+.Header {
+  height: $header-height;
+  background-color: color(header-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__logo, &__actions {
+    margin-left: auto;
+  }
+
+  &__logo {
+    position: absolute;
+    height: 40px;
+  }
+
+  &__actions {
+    border-left: 20px solid color(header-background-flurish);
+  }
+
+  &__search, &__login, &__basket {
+    height: 50px;
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    vertical-align: middle;
+    margin: 0;
+    font-family: Courier, sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    padding: 0 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      height: 20px;
+      margin-right: 0.5rem;
+    }
+
+    img, span {
+      vertical-align: middle;
+    }
+  }
+
+  &__search, &__basket {
+    background-color: color(header-button);
+
+    &:hover {
+      background-color: lighten(color(header-button), 8%);
+    }
+  }
+
+  &__search {
+    min-width: 130px;
+  }
+
+  &__login {
+    background-color: color(header-background);
+
+    img {
+      margin-right: 0.8rem;
+      transform: translateY(-10%);
+    }
+
+    &:hover {
+      background-color: lighten(color(header-background), 20%);
+    }
+  }
+
+  &__basket {
+    min-width: 80px;
+  }
+}
