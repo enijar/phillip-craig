@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {asset} from "../app/utils";
+import AppContext from "../app/AppContext";
 
+@AppContext
 export default class Header extends Component {
     render() {
         return (
@@ -17,6 +19,7 @@ export default class Header extends Component {
                     </Link>
                     <button className="Header__basket">
                         <img src={asset('img/icons/basket.svg')} alt="Basket"/>
+                        <span>{this.props.context.basket.length}</span>
                     </button>
                 </div>
             </div>
