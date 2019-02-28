@@ -5,6 +5,7 @@ import Screen from "../Components/Screen";
 import Carousel from "../Components/Carousel";
 import Header from "../Components/Header";
 import Nav from "../Components/Nav";
+import Title from "../Components/Title";
 
 const CAROUSEL_ITEMS = [
     asset('img/carousel/0.png'),
@@ -28,6 +29,8 @@ export default class HomeScreen extends BaseScreen {
                         </Carousel.Item>
                     ))}
                 </Carousel>
+
+                <Title>Shop</Title>
             </Screen>
         );
     }
