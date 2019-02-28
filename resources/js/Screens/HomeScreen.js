@@ -7,13 +7,21 @@ import Header from "../Components/Header";
 import Nav from "../Components/Nav";
 import Title from "../Components/Title";
 
-const CAROUSEL_ITEMS = [
-    asset('img/carousel/0.png'),
-    asset('img/carousel/0.png'),
-    asset('img/carousel/0.png'),
-    asset('img/carousel/0.png'),
-];
+const CAROUSEL_ITEMS = [];
+const ITEMS = [];
 
+for (let i = 0; i < 4; i++) {
+    CAROUSEL_ITEMS.push(asset('img/carousel/0.png'));
+}
+
+for (let i = 0; i < 3; i++) {
+    ITEMS.push({
+        id: i + 1,
+        img: asset('img/items/0.png'),
+        name: 'Bubblegum Block Hoodie',
+        price: 5500,
+    });
+}
 
 export default class HomeScreen extends BaseScreen {
     render() {

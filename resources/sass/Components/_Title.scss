@@ -4,7 +4,8 @@
 
   h1 {
     color: color(h1);
-    border-bottom: 1px solid color(h1);
+    border-bottom: 0.1em solid color(h1);
     display: inline-block;
+    font-weight: lighter;
   }
 }
