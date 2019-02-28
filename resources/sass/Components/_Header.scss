@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   &__logo, &__actions {
     margin-left: auto;
@@ -11,6 +12,9 @@
 
   &__logo {
     position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
     height: 40px;
   }
 

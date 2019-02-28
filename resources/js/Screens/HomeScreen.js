@@ -6,6 +6,8 @@ import Carousel from "../Components/Carousel";
 import Header from "../Components/Header";
 import Nav from "../Components/Nav";
 import Title from "../Components/Title";
+import Items from "../Components/Items";
+import ScrollIndicator from "../Components/ScrollIndicator";
 
 const CAROUSEL_ITEMS = [];
 const ITEMS = [];
@@ -14,7 +16,7 @@ for (let i = 0; i < 4; i++) {
     CAROUSEL_ITEMS.push(asset('img/carousel/0.png'));
 }
 
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 6; i++) {
     ITEMS.push({
         id: i + 1,
         img: asset('img/items/0.png'),
@@ -39,6 +41,10 @@ export default class HomeScreen extends BaseScreen {
                 </Carousel>
 
                 <Title>Shop</Title>
+
+                <Items items={ITEMS}/>
+
+                <ScrollIndicator direction="down"/>
             </Screen>
         );
     }

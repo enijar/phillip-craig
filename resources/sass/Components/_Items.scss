@@ -1,0 +1,29 @@
+.Items {
+  width: 100%;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &__item {
+    background-color: color(item-background);
+    padding: 1rem;
+    margin: 0.4rem;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+
+    &__img {
+      display: block;
+      max-width: 100%;
+    }
+
+    &__name {
+      font-weight: lighter;
+      margin-top: 1rem;
+    }
+
+    &__price {
+      color: color(item-price);
+    }
+  }
+}

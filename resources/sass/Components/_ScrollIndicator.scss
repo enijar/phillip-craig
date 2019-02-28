@@ -1,0 +1,28 @@
+.ScrollIndicator {
+  max-width: 50px;
+  position: relative;
+
+  &--down {
+    margin: 1rem auto;
+    position: sticky;
+    bottom: 0;
+
+    img {
+      animation: bounce 1s linear infinite;
+
+      @keyframes bounce {
+        0%, 100% {
+          transform: translateY(0%);
+        }
+
+        25% {
+          transform: translateY(25%);
+        }
+
+        75% {
+          transform: translateY(-25%);
+        }
+      }
+    }
+  }
+}
