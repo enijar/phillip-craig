@@ -21,6 +21,7 @@ for (let i = 0; i < 6; i++) {
         id: i + 1,
         img: asset('img/items/0.png'),
         name: 'Bubblegum Block Hoodie',
+        slug: 'bubblegum-block-hoodie',
         price: 5500,
     });
 }
