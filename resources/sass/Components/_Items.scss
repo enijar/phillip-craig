@@ -11,6 +11,12 @@
     text-align: center;
     display: inline-block;
     vertical-align: top;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+
+    &:hover {
+      background-color: darken(color(item-background), 5%);
+    }
 
     &__img {
       display: block;
