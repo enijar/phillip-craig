@@ -1,21 +1,10 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-
-const CURRENCIES = {
-    gbp: {
-        symbol: '£',
-        rate: 1,
-    },
-};
+import {CURRENCIES} from "../app/consts";
+import ProductFactory from "../app/Factories/ProductFactory";
 
 export default class Products extends Component {
     static propTypes = {
-        products: PropTypes.arrayOf(PropTypes.shape({
-            id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-            img: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
-        })),
         currency: PropTypes.string,
         decimalPlaces: PropTypes.number,
     };
@@ -23,6 +12,10 @@ export default class Products extends Component {
     static defaultProps = {
         currency: 'gbp',
         decimalPlaces: 2,
+    };
+
+    state = {
+        products: ProductFactory(6),
     };
 
     formatPrice(price) {
@@ -33,7 +26,7 @@ export default class Products extends Component {
     render() {
         return (
             <div className="Products">
-                {this.props.products.map(item => (
+                {this.state.products.map(item => (
                     <div key={item.id} className="Products__item">
                         <img src={item.img} alt={item.name} className="Products__item__img"/>
                         <h3 className="Products__item__name">

@@ -8,17 +8,11 @@ import Nav from "../Components/Nav";
 import Title from "../Components/Title";
 import Products from "../Components/Products";
 import ScrollIndicator from "../Components/ScrollIndicator";
-import ProductFactory from "../app/Factories/ProductFactory";
 
 const CAROUSEL_ITEMS = [];
-const PRODUCTS = [];
 
 for (let i = 0; i < 4; i++) {
     CAROUSEL_ITEMS.push(asset('img/carousel/0.jpg'));
-}
-
-for (let i = 0; i < 6; i++) {
-    PRODUCTS.push(ProductFactory());
 }
 
 export default class HomeScreen extends BaseScreen {
@@ -38,7 +32,7 @@ export default class HomeScreen extends BaseScreen {
 
                 <Title>Shop</Title>
 
-                <Products products={PRODUCTS}/>
+                <Products/>
 
                 <ScrollIndicator direction="down"/>
             </Screen>

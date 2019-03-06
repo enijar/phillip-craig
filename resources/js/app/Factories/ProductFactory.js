@@ -1,15 +1,20 @@
-import get from "lodash/get";
 import {asset, guid} from "../utils";
 
-export default attributes => {
-    const name = get(attributes, 'name', 'Bubblegum Block Hoodie');
-    const slug = name.replace(/\s+/, '-');
+export default function ProductFactory(total = 1) {
+    const entities = [];
 
-    return {
-        id: guid(),
-        img: asset('img/items/0.png'),
-        name,
-        slug,
-        price: get(attributes, 'price', 5500),
-    };
+    for (let i = 0; i < total; i++) {
+        const name = 'Bubblegum Block Hoodie';
+        const slug = name.replace(/\s+/, '-');
+
+        entities.push({
+            id: guid(),
+            img: asset('img/items/0.png'),
+            name,
+            slug,
+            price: 5500,
+        });
+    }
+
+    return entities;
 }
