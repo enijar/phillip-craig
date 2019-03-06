@@ -6,24 +6,19 @@ import Carousel from "../Components/Carousel";
 import Header from "../Components/Header";
 import Nav from "../Components/Nav";
 import Title from "../Components/Title";
-import Items from "../Components/Items";
+import Products from "../Components/Products";
 import ScrollIndicator from "../Components/ScrollIndicator";
+import ProductFactory from "../app/Factories/ProductFactory";
 
 const CAROUSEL_ITEMS = [];
-const ITEMS = [];
+const PRODUCTS = [];
 
 for (let i = 0; i < 4; i++) {
     CAROUSEL_ITEMS.push(asset('img/carousel/0.jpg'));
 }
 
 for (let i = 0; i < 6; i++) {
-    ITEMS.push({
-        id: i + 1,
-        img: asset('img/items/0.png'),
-        name: 'Bubblegum Block Hoodie',
-        slug: 'bubblegum-block-hoodie',
-        price: 5500,
-    });
+    PRODUCTS.push(ProductFactory());
 }
 
 export default class HomeScreen extends BaseScreen {
@@ -43,7 +38,7 @@ export default class HomeScreen extends BaseScreen {
 
                 <Title>Shop</Title>
 
-                <Items items={ITEMS}/>
+                <Products products={PRODUCTS}/>
 
                 <ScrollIndicator direction="down"/>
             </Screen>

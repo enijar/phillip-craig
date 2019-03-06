@@ -8,10 +8,10 @@ const CURRENCIES = {
     },
 };
 
-export default class Items extends Component {
+export default class Products extends Component {
     static propTypes = {
-        items: PropTypes.arrayOf(PropTypes.shape({
-            id: PropTypes.number.isRequired,
+        products: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
             img: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             price: PropTypes.number.isRequired,
@@ -32,14 +32,14 @@ export default class Items extends Component {
 
     render() {
         return (
-            <div className="Items">
-                {this.props.items.map(item => (
-                    <div key={`item-${item.id}`} className="Items__item">
-                        <img src={item.img} alt={item.name} className="Items__item__img"/>
-                        <h3 className="Items__item__name">
+            <div className="Products">
+                {this.props.products.map(item => (
+                    <div key={item.id} className="Products__item">
+                        <img src={item.img} alt={item.name} className="Products__item__img"/>
+                        <h3 className="Products__item__name">
                             {item.name}
                         </h3>
-                        <p className="Items__item__price">
+                        <p className="Products__item__price">
                             {this.formatPrice(item.price)}
                         </p>
                     </div>
