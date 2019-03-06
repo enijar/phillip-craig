@@ -5,7 +5,7 @@ export default function ProductFactory(total = 1) {
 
     for (let i = 0; i < total; i++) {
         const name = 'Bubblegum Block Hoodie';
-        const slug = name.replace(/\s+/, '-');
+        const slug = name.replace(/\s+/g, '-');
 
         entities.push({
             id: i + 1,
@@ -13,8 +13,14 @@ export default function ProductFactory(total = 1) {
             name,
             slug,
             price: 5500,
+            description: `
+                Lorem ipsum dolor sit amet, co sectetur adipiscing elit, 
+                sed do eiusmod tempor incidi ut labore et dolore magna aliqua. 
+                Quis ipsum supendisse. ultrices grav. Risus commodo viverra 
+                maecenas accumsan lacus vel facilisis.
+            `,
         });
     }
 
-    return entities;
+    return total === 1 ? entities[0] : entities;
 }
