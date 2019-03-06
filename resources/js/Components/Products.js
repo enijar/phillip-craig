@@ -5,6 +5,7 @@ import ProductFactory from "../app/Factories/ProductFactory";
 
 export default class Products extends Component {
     static propTypes = {
+        category: PropTypes.string.isRequired,
         currency: PropTypes.string,
         decimalPlaces: PropTypes.number,
     };

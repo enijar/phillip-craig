@@ -32,7 +32,7 @@ export default class HomeScreen extends BaseScreen {
 
                 <Title>Shop</Title>
 
-                <Products/>
+                <Products category="shop"/>
 
                 <ScrollIndicator direction="down"/>
             </Screen>
