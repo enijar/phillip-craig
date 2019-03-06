@@ -1,6 +1,7 @@
 const path = require('path');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const postCSSLoaderPlugins = [
     require('autoprefixer')({
@@ -100,6 +101,7 @@ module.exports = {
             filename: 'app.css',
             allChunks: true,
         }),
+        new CleanWebpackPlugin(),
     ],
     devtool: process.argv[process.argv.length - 1] === 'development' ? 'source-map' : false,
 };

@@ -34,7 +34,7 @@
   "env": {
     "production": {
       "plugins": [
-        "transform-react-remove-prop-types"
+        "@babel/plugin-transform-react-inline-elements"
       ]
     }
   }

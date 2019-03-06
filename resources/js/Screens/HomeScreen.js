@@ -13,7 +13,7 @@ const CAROUSEL_ITEMS = [];
 const ITEMS = [];
 
 for (let i = 0; i < 4; i++) {
-    CAROUSEL_ITEMS.push(asset('img/carousel/0.png'));
+    CAROUSEL_ITEMS.push(asset('img/carousel/0.jpg'));
 }
 
 for (let i = 0; i < 6; i++) {
