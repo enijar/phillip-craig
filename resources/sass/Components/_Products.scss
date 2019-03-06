@@ -13,6 +13,7 @@
     vertical-align: top;
     cursor: pointer;
     transition: background-color 0.4s ease;
+    text-decoration: none;
 
     &:hover {
       background-color: darken(color(item-background), 5%);

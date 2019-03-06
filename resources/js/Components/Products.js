@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {CURRENCIES} from "../app/consts";
 import ProductFactory from "../app/Factories/ProductFactory";
+import {Link} from "react-router-dom";
 
 export default class Products extends Component {
     static propTypes = {
@@ -28,7 +29,7 @@ export default class Products extends Component {
         return (
             <div className="Products">
                 {this.state.products.map(item => (
-                    <div key={item.id} className="Products__item">
+                    <Link key={item.id} className="Products__item" to={`/product/${item.id}/${item.slug}`}>
                         <img src={item.img} alt={item.name} className="Products__item__img"/>
                         <h3 className="Products__item__name">
                             {item.name}
@@ -36,7 +37,7 @@ export default class Products extends Component {
                         <p className="Products__item__price">
                             {this.formatPrice(item.price)}
                         </p>
-                    </div>
+                    </Link>
                 ))}
             </div>
         );

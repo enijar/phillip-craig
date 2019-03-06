@@ -1,4 +1,4 @@
-import {asset, guid} from "../utils";
+import {asset} from "../utils";
 
 export default function ProductFactory(total = 1) {
     const entities = [];
@@ -8,7 +8,7 @@ export default function ProductFactory(total = 1) {
         const slug = name.replace(/\s+/, '-');
 
         entities.push({
-            id: guid(),
+            id: i + 1,
             img: asset('img/items/0.png'),
             name,
             slug,
