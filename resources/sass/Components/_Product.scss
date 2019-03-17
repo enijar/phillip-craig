@@ -1,11 +1,19 @@
 .Product {
   display: flex;
 
+  &__info, &__price {
+    flex: 1 0 0;
+  }
+
   &__info {
     padding-left: 2rem;
   }
 
   &__price {
     color: color(item-price);
+  }
+
+  &__description {
+    margin-top: 1rem;
   }
 }

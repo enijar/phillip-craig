@@ -5,7 +5,8 @@ export default class SizePicker extends Component {
     static propTypes = {
         sizes: PropTypes.array,
         selected: PropTypes.string,
-        onSelect: PropTypes.func,
+        onChange: PropTypes.func,
+        value: PropTypes.string,
     };
 
     static defaultProps = {
@@ -13,8 +14,8 @@ export default class SizePicker extends Component {
     };
 
     handleClick = size => () => {
-        if (this.props.onSelect) {
-            this.props.onSelect(size);
+        if (this.props.onChange) {
+            this.props.onChange(size);
         }
     };
 
@@ -26,7 +27,7 @@ export default class SizePicker extends Component {
                         key={`size-${index}`}
                         className={`
                             SizePicker__size
-                            ${this.props.selected === size ? 'SizePicker__size--selected' : ''}
+                            ${this.props.value === size ? 'SizePicker__size--selected' : ''}
                         `}
                         onClick={this.handleClick(size)}
                     >

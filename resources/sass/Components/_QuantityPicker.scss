@@ -1,0 +1,38 @@
+.QuantityPicker {
+  $size: 1.5em;
+  font-size: $size;
+  display: inline-flex;
+  border: 0.05em solid color(text);
+  border-radius: 0.2em;
+  overflow: hidden;
+  margin-bottom: 1rem;
+
+  button {
+    font-size: $size * 0.8;
+    background-color: color(quantity-selector);
+    color: color(text);
+    padding: 0;
+    width: $size * 0.9;
+    height: $size * 0.9;
+    border: none;
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__value {
+    width: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: color(text);
+    border-left: 0.05em solid color(text);
+    border-right: 0.05em solid color(text);
+  }
+}

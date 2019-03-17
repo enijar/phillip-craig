@@ -8,16 +8,25 @@ import Header from "../Components/Header";
 import Nav from "../Components/Nav";
 import Title from "../Components/Title";
 import SizePicker from "../Components/SizePicker";
+import QuantityPicker from "../Components/QuantityPicker";
+import Button from "../Components/Button";
 
 @AppContext
 export default class ProductScreen extends BaseScreen {
     state = {
         product: ProductFactory(),
-        size: 'M',
     };
 
-    handleSizeSelect = size => {
-        this.setState({size});
+    handleSizeChange = size => {
+        const {product} = this.state;
+        product.size = size;
+        this.setState({product});
+    };
+
+    handleQuantityChange = quantity => {
+        const {product} = this.state;
+        product.quantity = quantity;
+        this.setState({product});
     };
 
     render() {
@@ -40,7 +49,18 @@ export default class ProductScreen extends BaseScreen {
                         </h2>
 
                         <h3>Size</h3>
-                        <SizePicker onSelect={this.handleSizeSelect} selected={this.state.size}/>
+                        <SizePicker onChange={this.handleSizeChange} value={this.state.product.size}/>
+
+                        <h3>Quantity</h3>
+                        <QuantityPicker onChange={this.handleQuantityChange} value={this.state.product.quantity}/>
+
+                        <Button cart>Add to Cart</Button>
+
+                        <p className="Product__description">
+                            <strong>Description</strong>
+                            <br/>
+                            {this.state.product.description}
+                        </p>
                     </div>
                 </div>
             </Screen>

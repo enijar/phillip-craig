@@ -20,6 +20,8 @@ export default function ProductFactory(total = 1) {
                 Quis ipsum supendisse. ultrices grav. Risus commodo viverra 
                 maecenas accumsan lacus vel facilisis.
             `,
+            size: 'M',
+            quantity: 1,
         });
     }
 

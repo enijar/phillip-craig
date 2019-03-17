@@ -21,6 +21,15 @@ export default styled.button`
     border: 3px solid #fff;
   }
   
+  ${props => props.cart && css`
+    display: block;
+    
+    :focus {
+      outline: none;
+      border: 3px solid #eb4747;
+    }
+  `}
+  
   @media (max-width: 500px) {
     font-size: 1rem;
   }
