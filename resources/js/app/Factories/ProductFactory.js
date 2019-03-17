@@ -10,6 +10,7 @@ export default function ProductFactory(total = 1) {
         entities.push({
             id: i + 1,
             img: asset('img/items/0.png'),
+            preview: asset('img/previews/0.png'),
             name,
             slug,
             price: 5500,

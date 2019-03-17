@@ -5,11 +5,16 @@ import {Context} from "../app/AppContext";
 export default class App extends Component {
     state = {
         basket: [],
+        price: {
+            currency: 'gbp',
+            decimalPlaces: 2,
+        },
     };
 
     getContext() {
         return {
             basket: this.state.basket,
+            price: this.state.price,
         };
     }
 

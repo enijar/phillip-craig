@@ -1,0 +1,11 @@
+.Product {
+  display: flex;
+
+  &__info {
+    padding-left: 2rem;
+  }
+
+  &__price {
+    color: color(item-price);
+  }
+}

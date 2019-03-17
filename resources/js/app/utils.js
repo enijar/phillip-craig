@@ -1,3 +1,5 @@
+import {CURRENCIES} from "./consts";
+
 export function url(pathname) {
     // Replace leading and trailing "/"
     pathname = pathname.replace(/^\/+/, '');
@@ -53,4 +55,9 @@ export function route(routeName, params = {}) {
     }
 
     throw new Error(`Named route does not exist: ${routeName}`);
+}
+
+export function formatPrice(price, {currency, decimalPlaces}) {
+    const {symbol, rate} = CURRENCIES[currency];
+    return `${symbol}${Number(price / 100 * rate).toFixed(decimalPlaces)}`;
 }

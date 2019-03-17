@@ -1,29 +1,19 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {CURRENCIES} from "../app/consts";
-import ProductFactory from "../app/Factories/ProductFactory";
 import {Link} from "react-router-dom";
+import {formatPrice} from "../app/utils";
+import ProductFactory from "../app/Factories/ProductFactory";
+import AppContext from "../app/AppContext";
 
+@AppContext
 export default class Products extends Component {
     static propTypes = {
         category: PropTypes.string.isRequired,
-        currency: PropTypes.string,
-        decimalPlaces: PropTypes.number,
-    };
-
-    static defaultProps = {
-        currency: 'gbp',
-        decimalPlaces: 2,
     };
 
     state = {
         products: ProductFactory(6),
     };
-
-    formatPrice(price) {
-        const {symbol, rate} = CURRENCIES[this.props.currency];
-        return `${symbol}${Number(price / 100 * rate).toFixed(this.props.decimalPlaces)}`;
-    }
 
     render() {
         return (
@@ -35,7 +25,7 @@ export default class Products extends Component {
                             {item.name}
                         </h3>
                         <p className="Products__item__price">
-                            {this.formatPrice(item.price)}
+                            {formatPrice(item.price, this.props.context.price)}
                         </p>
                     </Link>
                 ))}
