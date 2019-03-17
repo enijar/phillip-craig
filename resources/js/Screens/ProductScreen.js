@@ -29,6 +29,10 @@ export default class ProductScreen extends BaseScreen {
         this.setState({product});
     };
 
+    handleAddToBasket = () => {
+        this.props.context.addToBasket(this.state.product);
+    };
+
     render() {
         return (
             <Screen name="Product">
@@ -54,7 +58,7 @@ export default class ProductScreen extends BaseScreen {
                         <h3>Quantity</h3>
                         <QuantityPicker onChange={this.handleQuantityChange} value={this.state.product.quantity}/>
 
-                        <Button cart>Add to Cart</Button>
+                        <Button cart onClick={this.handleAddToBasket}>Add to Basket</Button>
 
                         <p className="Product__description">
                             <strong>Description</strong>

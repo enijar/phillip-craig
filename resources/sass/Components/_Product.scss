@@ -1,5 +1,6 @@
 .Product {
   display: flex;
+  flex-wrap: wrap;
 
   &__info, &__price {
     flex: 1 0 0;
@@ -7,6 +8,7 @@
 
   &__info {
     padding-left: 2rem;
+    min-width: 300px;
   }
 
   &__price {
