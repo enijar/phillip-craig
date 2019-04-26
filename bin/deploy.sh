@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ssh root@206.189.123.1 -T <<EOF
+ssh ubuntu@51.77.119.205 -T <<EOF
 	cd /var/www/phillipcraig.com
 
 	printf "Pulling from master...\n"
